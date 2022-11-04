@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./Main-Web/css/main.css" />
+  </head>
+  <body style="background-color: rgba(93, 65, 65, 0.05)">
+    <!-- header -->
+   
+    
+          <header class="header">
+            <div class="container">
+              <a href="#" class="logo">CyberPhone</a>
+              <nav class="navbar">
+                <a href="#" class="active">Home</a>
+                <a href="#">About</a>
+                <a href="#">Shop</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact</a>
+                <a  href="#"><button id="cart">
+                  <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                  Giỏ Hàng
+              </button></a>
+              </nav>
+            </div>
+          </header>
+        
+          <section class="carousel">
+            <main class="main">
+              <div class="container">
+                <div class="info">
+                  <h2>CyberPhone</h2>
+                  <h3>Best Smartphone in the year 2022</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora at repudiandae, cupiditate aut animi
+                    molestiae sit culpa magnam quis illum?</p>
+                  <div class="btns">
+                    <button class="btn-info">More Info</button>
+                    <button class="btn-shop">Shop</button>
+                  </div>
+        
+        
+                </div>
+                <img src="./img/product-header2.png" alt="">
+        
+        
+              </div>
+            </main>
+        
+        
+          </section>
+        
+      
+          
+          <!-- The Modal -->
+          
+          <div id="myModal" class="modal">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Giỏ Hàng</h5>
+                      <span class="close">&times;</span>
+                  </div>
+                  <div class="modal-body">                       
+                      <div class="cart-row">
+                          <span class="cart-item cart-header cart-column">Sản Phẩm</span>
+                          <span class="cart-price cart-header cart-column">Giá</span>
+                          <span class="cart-quantity cart-header cart-column">Số Lượng</span>
+                      </div>
+                      <div class="cart-items" id="cart-items">
+                      </div>
+                      <div class="cart-total">
+                <button class="btn btn-danger" type="button" onclick="delete_allCart()">Xóa toàn bộ</button>
+                          <strong class="cart-total-title">Tổng Cộng:</strong>
+                          <span class="cart-total-price">0$</span>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                      <button type="button" class="btn btn-primary order" id="thanhToan">Thanh Toán</button>
+                  </div>
+              </div>
+          </div>
+      </nav>
+    </header>
+    </div>
+    <section class="wrapper container">
+      <div class="products">
+        <h2>Chọn loại điện thoại bạn muốn mua</h2>
+        <div class="sidebar__large col-9">
+          <select class="select" id="choice" onchange="searchType()">
+            <option value="">Choose Mobile</option>
+            <option value="Iphone">Iphone</option>
+            <option value="Samsung">Samsung</option></select>
+       
+              <div id="detailMobile" class="sidebar__content "></div>
+          
+        </div>
+       
+
+        </div>
+     
+        
+      </div>
+    </section>
+   
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+      integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./Main-Web/models/cartitem.js"></script>
+    <script src="./Main-Web/models/product.js"></script>
+    <script src="./Main-Web/services/service.js"></script>
+    <script src="./Main-Web/models/chucNang.js"></script>
+    <script src="./Main-Web/controller/main.js"></script>
+  </body>
+</html>
+ 
