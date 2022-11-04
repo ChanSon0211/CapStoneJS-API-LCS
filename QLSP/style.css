@@ -4,3 +4,11 @@
     box-sizing: border-box;
 
 }
+.table {
+    table-layout: fixed;
+    width: 100%;
+}
+.table thead , td {
+    white-space: normal;
+    word-wrap: break-word;
+}

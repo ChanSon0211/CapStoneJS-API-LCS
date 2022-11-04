@@ -5,100 +5,7 @@ function getEle(id){
     return document.getElementById(id);
 }
 
-function getInfo(isAdd){
-    var accountName = getEle("accounT").value;
-    var fullName = getEle("fullName").value;
-    var passWord = getEle("passWord").value;
-    var getEmail = getEle("Email").value;
-    var getImage = getEle("imageInfo").value;
-    var peopleType = getEle("peopleType").value;
-    var languageType = getEle("languageType").value;
-    var describeInfo = getEle("describeInfo").value;
-      //taiKhoan
-    var isValid = true;
-    
-if (isAdd) {
-  isValid &=
-    validation.kiemTraRong(accountName, "alertAccounts", "(*)  Vui lòng nhập tai khoan dung do dai") &&
-    validation.kiemTraDoDaiKiTu(
-      accountName,
-      "alertAccounts",
-      "(*)  Vui lòng nhập ki tu 4 - 10",
-      4,
-      10
-    )
-}
 
-  // //Ten Nhanvien
-   isValid &=
-     validation.kiemTraRong(fullName, "alertFullName", "(*)  Vui lòng nhập tên SV") &&
-     validation.kiemTraKiTuChuoi(
-      fullName,
-       "alertFullName",
-       "(*)  Vui lòng nhập chuỗi ki tự"
-     );
-
-  // //Email
-   isValid &=
-     validation.kiemTraRong(getEmail, "alertEmail", "(*)  Vui lòng nhập email") &&
-     validation.checkEmail(
-      getEmail,
-       "alertEmail",
-       "(*)  Vui lòng nhập email dung dinh dang!"
-     );
-  
-  // //Mat khau
-   isValid &= validation.kiemTraRong(
-    passWord,
-     "alertPassword",
-     "(*)  Vui lòng nhập pass"
-   )&& validation.kiemTraDoDaiKiTu(
-    passWord,
-    "alertPassword",
-    "(*)  Vui lòng nhập kí tự dài từ 5 đến 20 ký tự ",5,20
-   )
-
-  // //Lay hinh anh
-   isValid &= validation.kiemTraRong(
-    getImage,
-     "imageAlert",
-     "(*)  Vui long nhap hinh anh"
-   );
-
-  // //
-   isValid &= validation.checkChucVu(
-     "peopleType",
-     "typePeopleAlert",
-     "(*) Vui long chon loai nguoi dung"
-   );
-
-   isValid &= validation.checkChucVu(
-    "languageType",
-    "alertLanguageType",
-    "(*) Vui long chon ngon ngu"
-  );
-  isValid &= validation.kiemTraRong(
-    describeInfo,
-    "describeAlert",
-    "(*)  Vui lòng nhập ngay lam viec"
-  );
-
-  if (!isValid) return null;
-  
-  var product = new DanhSachSanPham(
-    accountName,
-    fullName,
-    passWord,
-    getEmail,
-    peopleType,
-    languageType,
-    describeInfo,
-    getImage,
-  );
-
-  return product;
-
-}
 function renderTable(data){
     var content = "";
     data.forEach(function(product){
@@ -112,8 +19,9 @@ function renderTable(data){
     <td>${product.screen}</td>
     <td>${product.backCamera}</td>
     <td>${product.frontCamera}</td>
-    <td>${product.desc}</td>
     <td>${product.img}</td>
+    <td>${product.desc}</td>
+    <td>${product.type}</td>
       <td>
      <button class="btn btn-success mt-3"  onclick="xoaTT(${product.id})">Xoa</button>
       <button class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal"  onclick="capnhatTT(${product.id})">Cap Nhat</button></td>
@@ -156,12 +64,14 @@ function themTT(){
   var screenType = getEle("screenType").value;
   var backCamera = getEle("backCamera").value;
   var frontCamera = getEle("frontCamera").value;
-  var desc = getEle("describeInfo").value;
   var image = getEle("imageInfo").value;
-  var product = new Product("",productName, price, screenType,backCamera,frontCamera,image,desc)
+  var desc = getEle("describeInfo").value;
+  var type = getEle("typeItem").value;
+  var product = new Product("",productName, price, screenType,backCamera,frontCamera,image,desc,type)
   service.addProductApi(product)
   .then(function(){
     fetchData();
+    alert("Thêm thành công");
   })
   .catch(function(error){
     console.log(error);
@@ -179,8 +89,10 @@ function capnhatTT(id){
   getEle("screenType").value=result.data.screen;
   getEle("backCamera").value = result.data.backCamera;
   getEle("frontCamera").value= result.data.frontCamera;
-   getEle("describeInfo").value= result.data.desc;
-   getEle("imageInfo").value= result.data.img;
+  getEle("imageInfo").value= result.data.img; 
+  getEle("describeInfo").value= result.data.desc;
+  getEle("typeItem").value= result.data.type; 
+ 
    fetchData();
   })
   .catch(function(error){
@@ -194,9 +106,10 @@ function updateProduct(id){
   var screenType = getEle("screenType").value;
   var backCamera = getEle("backCamera").value;
   var frontCamera = getEle("frontCamera").value;
-  var desc = getEle("describeInfo").value;
   var image = getEle("imageInfo").value;
-  var product = new Product(id,productName, price, screenType,backCamera,frontCamera,image,desc)
+  var desc = getEle("describeInfo").value;
+  var type = getEle("typeItem").value;
+  var product = new Product(id,productName, price, screenType,backCamera,frontCamera,image,desc,type);
   service.updateProductApi(product)
   .then(function(){
     fetchData();

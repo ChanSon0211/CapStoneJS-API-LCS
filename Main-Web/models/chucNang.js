@@ -1,5 +1,5 @@
 class Cart {
-    constructor(id, name, price, screen, backCamera, frontCamera, img, desc) {
+    constructor(id, name, price, screen, backCamera, frontCamera, img, desc, type) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -8,6 +8,7 @@ class Cart {
         this.frontCamera = frontCamera;
         this.img = img;
         this.desc = desc;
+        this.type = type;
     }
 }
 
@@ -29,7 +30,7 @@ async function getData() {
   
   window.onload = async function () {
     await getData();
-    renderMobile();
+ 
     copyCart();
   };
 
@@ -48,7 +49,7 @@ function mapData(data) {
         oldProduct.frontCamera,
         oldProduct.img,
         oldProduct.desc,
-        oldProduct.type
+        oldProduct.type,
       );
       result.push(newProduct);
     }
@@ -71,10 +72,10 @@ function renderCart(data) {
           <p>Screen:  ${currentMobile.screen}</p>
           <p>Back Camera:  ${currentMobile.backCamera}</p>
           <p>Front Camera: ${currentMobile.frontCamera}</p>
-          <p>
+          <p>Mô tả:
           ${currentMobile.desc}
           </p>
-          <p>${currentMobile.type}</p>
+          <p>Type : ${currentMobile.type}</p>
         </div>
       </div>
       <div class="content__right px-5 col-3">
@@ -116,9 +117,9 @@ let cart = [];
         {
           id: data.id,
           name: data.name,
-          type: data.type,
           price: data.price,
           img: data.img,
+          type: data.type,
         },
         0
       );
@@ -187,10 +188,10 @@ function add_cart(id) {
     const index = products.findIndex((item) => item.id == id);
     let currentProduct = null;
     if (index !== -1) {
-        currentProduct = products[index]
+        currentProduct = products[index];
     }
-    const addproduct = { name: currentProduct.name, price: currentProduct.price, img: currentProduct.img, id: currentProduct.id }
-    listCart = [...listCart, addproduct]
+    const addproduct = { name: currentProduct.name, price: currentProduct.price, img: currentProduct.img, id: currentProduct.id , type:currentProduct.type };
+    listCart = [...listCart, addproduct];
     saveData(listCart);
     renderMobile();
     updatecart();
