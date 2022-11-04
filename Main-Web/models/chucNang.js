@@ -1,3 +1,7 @@
+
+var product = new Product();
+var service = new Service();
+
 class Cart {
     constructor(id, name, price, screen, backCamera, frontCamera, img, desc, type) {
         this.id = id;
@@ -10,7 +14,7 @@ class Cart {
         this.desc = desc;
         this.type = type;
     }
-}
+};
 
 let listCart = [];
 
@@ -30,6 +34,7 @@ async function getData() {
   
   window.onload = async function () {
     await getData();
+    renderMobile();
     copyCart();
   };
 
@@ -186,14 +191,14 @@ function add_cart(id) {
     const productsJSON = localStorage.getItem('products')
     const products = JSON.parse(productsJSON)
     const index = products.findIndex((item) => item.id == id);
-    currentProduct= productsJSON;
-    if (index !==  -1) {
+    let currentProduct = null;
+    if (index !== -1) {
         currentProduct = products[index];
     }
     const addproduct = { name: currentProduct.name, price: currentProduct.price, img: currentProduct.img, id: currentProduct.id};
     listCart = [...listCart, addproduct];
     saveData(listCart);
-    renderMobile(id);
+    renderMobile();
     updatecart();
     modal.style.display = "block";
 }
@@ -242,7 +247,7 @@ let renderMobile = () => {
             </div>
             <span class="cart-price cart-column">${item.price}</span>
             <div class="cart-quantity cart-column">
-                <input class="cart-quantity-input" type="number" value="1">
+                <input class="cart-quantity-input" type="" value="1">
                 <button class="btn btn-danger" type="button" onclick="delete_cart(${item.id})">Xóa</button>
             </div>
         </div>
@@ -253,3 +258,4 @@ let renderMobile = () => {
 let saveData = (data) => {
     localStorage.setItem("listCart", JSON.stringify(data))
 }
+
