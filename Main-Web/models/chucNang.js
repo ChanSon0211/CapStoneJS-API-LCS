@@ -30,7 +30,6 @@ async function getData() {
   
   window.onload = async function () {
     await getData();
- 
     copyCart();
   };
 
@@ -183,20 +182,23 @@ setInterval(function () {
 
   
 function add_cart(id) {
+  
     const productsJSON = localStorage.getItem('products')
     const products = JSON.parse(productsJSON)
     const index = products.findIndex((item) => item.id == id);
-    let currentProduct = null;
-    if (index !== -1) {
+    currentProduct= productsJSON;
+    if (index !==  -1) {
         currentProduct = products[index];
     }
-    const addproduct = { name: currentProduct.name, price: currentProduct.price, img: currentProduct.img, id: currentProduct.id , type:currentProduct.type };
+    const addproduct = { name: currentProduct.name, price: currentProduct.price, img: currentProduct.img, id: currentProduct.id};
     listCart = [...listCart, addproduct];
     saveData(listCart);
-    renderMobile();
+    renderMobile(id);
     updatecart();
     modal.style.display = "block";
 }
+
+
 function delete_cart(id) {
     const productsJSON = localStorage.getItem('products')
     const products = JSON.parse(productsJSON)
