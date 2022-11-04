@@ -66,7 +66,7 @@ h3{
 }
 
 .carousel {
-  background-image: url(/CAPSTON-JS-master/img/product-header-bg-dark.jpg);
+  background-image: url(/img/product-header-bg-dark.jpg);
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -162,12 +162,12 @@ flex-wrap: wrap;
  margin-bottom: 50px;
  border: 2px solid #222;
  border-radius: 20px;
-background-image: url(/CAPSTON-JS-master/img/product-header-bg.jpg);
+background-image: url(/img/product-header-bg.jpg);
 font-size: 1.2rem;
 font-weight: bold;
 }
 .products .sidebar__content .row:hover{
-background-image: url(/CAPSTON-JS-master/img/product-header-bg-dark.jpg);
+background-image: url(/img/product-header-bg-dark.jpg);
 color: white;
 transform: scale(1.2);
 
